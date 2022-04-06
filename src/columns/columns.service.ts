@@ -1,21 +1,20 @@
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { DeepPartial, FindOneOptions, Repository } from "typeorm";
-import { Columns } from "./columns.entity";
-import { Users } from "../users/users.entity";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { DeepPartial, FindOneOptions, Repository } from 'typeorm';
+import { Columns } from './columns.entity';
+import { Users } from '../users/users.entity';
 
 @Injectable()
 export class ColumnsService {
   constructor(
     @InjectRepository(Columns)
-    private readonly columnsRepository: Repository<Columns>
-  ) {
-  }
+    private readonly columnsRepository: Repository<Columns>,
+  ) {}
 
   async create(entity: DeepPartial<Columns>, user: Users) {
     return await this.columnsRepository.save({
       ...entity,
-      userId: user.id
+      userId: user.id,
     });
   }
 

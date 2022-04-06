@@ -9,23 +9,22 @@ import { CommentsModule } from "./comments/comments.module";
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: "postgres",
-      host: "localhost",
-      port: 5432,
-      username: "platform",
-      password: "platform",
-      database: "platform",
+      type: 'postgres',
+      host: 'localhost',
+      port: 5434,
+      username: 'platform',
+      password: 'platform',
+      database: 'platform',
       synchronize: true,
-      autoLoadEntities: true
+      autoLoadEntities: true,
     }),
     UsersModule,
     AuthModule,
     ColumnsModule,
     CardsModule,
-    CommentsModule
+    CommentsModule,
   ],
   controllers: [],
-  providers: []
+  providers: [],
 })
-export class AppModule {
-}
+export class AppModule {}

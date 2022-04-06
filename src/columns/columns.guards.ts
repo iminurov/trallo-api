@@ -1,10 +1,14 @@
-import { CanActivate, ExecutionContext, Injectable, NotFoundException } from "@nestjs/common";
-import { ColumnsService } from "./columns.service";
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { ColumnsService } from './columns.service';
 
 @Injectable()
 export class ColumnsOwnerGuard implements CanActivate {
-  constructor(private readonly columnsService: ColumnsService) {
-  }
+  constructor(private readonly columnsService: ColumnsService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
@@ -12,7 +16,7 @@ export class ColumnsOwnerGuard implements CanActivate {
     const currentUserId = await request.user.id;
     const column = await this.columnsService.findOne(
       { id: columnId },
-      { select: ["userId"] }
+      { select: ['userId'] },
     );
 
     if (!column) {
@@ -25,8 +29,7 @@ export class ColumnsOwnerGuard implements CanActivate {
 
 @Injectable()
 export class ColumnOwnerGuard implements CanActivate {
-  constructor(private readonly columnsService: ColumnsService) {
-  }
+  constructor(private readonly columnsService: ColumnsService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
@@ -34,7 +37,7 @@ export class ColumnOwnerGuard implements CanActivate {
     const currentUserId = await request.user.id;
     const column = await this.columnsService.findOne(
       { id: columnId },
-      { select: ["userId"] }
+      { select: ['userId'] },
     );
 
     if (!column) {

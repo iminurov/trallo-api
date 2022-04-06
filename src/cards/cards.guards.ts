@@ -1,10 +1,14 @@
-import { CanActivate, ExecutionContext, Injectable, NotFoundException } from "@nestjs/common";
-import { CardsService } from "./cards.service";
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { CardsService } from './cards.service';
 
 @Injectable()
 export class CardsOwnerGuard implements CanActivate {
-  constructor(private readonly cardsService: CardsService) {
-  }
+  constructor(private readonly cardsService: CardsService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
@@ -12,7 +16,7 @@ export class CardsOwnerGuard implements CanActivate {
     const currentUserId = request.user.id;
     const card = await this.cardsService.findOne(
       { id: cardId },
-      { select: ["userId"] }
+      { select: ['userId'] },
     );
 
     if (!card) {
@@ -24,8 +28,7 @@ export class CardsOwnerGuard implements CanActivate {
 
 @Injectable()
 export class CardOwnerGuard implements CanActivate {
-  constructor(private readonly cardsService: CardsService) {
-  }
+  constructor(private readonly cardsService: CardsService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
@@ -33,7 +36,7 @@ export class CardOwnerGuard implements CanActivate {
     const currentUserId = request.user.id;
     const card = await this.cardsService.findOne(
       { id: cardId },
-      { select: ["userId"] }
+      { select: ['userId'] },
     );
 
     if (!card) {

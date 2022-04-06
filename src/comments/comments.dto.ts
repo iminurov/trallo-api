@@ -1,5 +1,5 @@
-import { PartialType } from "@nestjs/mapped-types";
-import { IsString, MaxLength } from "class-validator";
+import { PartialType } from '@nestjs/mapped-types';
+import { IsString, MaxLength } from 'class-validator';
 
 export class CreateCommentsDto {
   @IsString({ always: true })
@@ -14,5 +14,4 @@ export class CreateCommentsDto {
   body: string;
 }
 
-export class UpdateCommentsDto extends PartialType(CreateCommentsDto) {
-}
+export class UpdateCommentsDto extends PartialType(CreateCommentsDto) {}

@@ -1,11 +1,11 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { IsString, MaxLength } from "class-validator";
-import { Users } from "../users/users.entity";
-import { Cards } from "../cards/cards.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { IsString, MaxLength } from 'class-validator';
+import { Users } from '../users/users.entity';
+import { Cards } from '../cards/cards.entity';
 
 @Entity()
 export class Comments {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id?: string;
 
   @IsString({ always: true })
@@ -18,11 +18,11 @@ export class Comments {
 
   @IsString({ always: true })
   @MaxLength(100, { always: true })
-  @Column({ type: "varchar", length: 100, nullable: false })
+  @Column({ type: 'varchar', length: 100, nullable: false })
   name: string;
 
   @IsString({ always: true })
-  @Column({ type: "varchar", length: 1000, nullable: false })
+  @Column({ type: 'varchar', length: 1000, nullable: false })
   body: string;
 
   /**
@@ -30,14 +30,14 @@ export class Comments {
    */
 
   @ManyToOne(() => Cards, (Cards) => Cards.comments, {
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE"
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
   })
   public card: Cards;
 
   @ManyToOne(() => Users, (Users) => Users.cards, {
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE"
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
   })
   public user: Users;
 }

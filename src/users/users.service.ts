@@ -1,22 +1,21 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Users } from "./users.entity";
-import { DeepPartial, FindOneOptions, Repository } from "typeorm";
-import * as bcrypt from "bcrypt";
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Users } from './users.entity';
+import { DeepPartial, FindOneOptions, Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(Users)
-    private readonly usersRepository: Repository<Users>
-  ) {
-  }
+    private readonly usersRepository: Repository<Users>,
+  ) {}
 
   async create(entity: DeepPartial<Users>) {
     const hashPassword = await bcrypt.hash(entity.password, 10);
     const saveUser = await this.usersRepository.save({
       ...entity,
-      password: hashPassword
+      password: hashPassword,
     });
 
     try {

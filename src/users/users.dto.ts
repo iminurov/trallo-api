@@ -17,5 +17,4 @@ export class CreateUserDto {
   lastName: string;
 }
 
-export class UpdateUserDto extends PartialType(CreateUserDto) {
-}
+export class UpdateUserDto extends PartialType(CreateUserDto) {}

@@ -8,10 +8,15 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   const config = new DocumentBuilder().addBearerAuth().build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup("docs", app, document);
+  SwaggerModule.setup('docs', app, document, {
+    swaggerOptions: {
+      apisSorter: 'alpha',
+      tagsSorter: 'alpha',
+      operationsSorter: 'alpha',
+    },
+  });
 
-  await app.listen(3000);
+  await app.listen(3001);
 }
 
 bootstrap();
-

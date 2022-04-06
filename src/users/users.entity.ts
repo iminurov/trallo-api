@@ -14,7 +14,7 @@ import { Comments } from "../comments/comments.entity";
 
 @Entity()
 export class Users {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @CreateDateColumn({ nullable: true })
@@ -23,7 +23,7 @@ export class Users {
   @UpdateDateColumn({ nullable: true })
   updatedAt?: Date;
 
-  @Column({ type: "varchar", length: 255, nullable: false, unique: true })
+  @Column({ type: 'varchar', length: 255, nullable: false, unique: true })
   email: string;
 
   @Exclude({ toPlainOnly: true })

@@ -1,5 +1,5 @@
-import { PartialType } from "@nestjs/mapped-types";
-import { IsString, MaxLength } from "class-validator";
+import { PartialType } from '@nestjs/mapped-types';
+import { IsString, MaxLength } from 'class-validator';
 
 export class CreateColumnsDto {
   @IsString({ always: true })
@@ -7,5 +7,4 @@ export class CreateColumnsDto {
   name: string;
 }
 
-export class UpdateColumnsDto extends PartialType(CreateColumnsDto) {
-}
+export class UpdateColumnsDto extends PartialType(CreateColumnsDto) {}

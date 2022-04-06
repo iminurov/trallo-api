@@ -1,28 +1,27 @@
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { DeepPartial, FindOneOptions, Repository } from "typeorm";
-import { Comments } from "./comments.entity";
-import { Users } from "../users/users.entity";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { DeepPartial, FindOneOptions, Repository } from 'typeorm';
+import { Comments } from './comments.entity';
+import { Users } from '../users/users.entity';
 
 @Injectable()
 export class CommentsService {
   constructor(
     @InjectRepository(Comments)
-    private readonly commentsRepository: Repository<Comments>
-  ) {
-  }
+    private readonly commentsRepository: Repository<Comments>,
+  ) {}
 
   async create(entity: DeepPartial<Comments>, user: Users) {
     return await this.commentsRepository.save({
       ...entity,
-      userId: user.id
+      userId: user.id,
     });
   }
 
   findAll(user: Users, cardId: string) {
     const filter = cardId && { cardId };
     return this.commentsRepository.find({
-      where: { userId: user.id, ...filter }
+      where: { userId: user.id, ...filter },
     });
   }
 

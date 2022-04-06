@@ -6,12 +6,11 @@ import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 import { CurrentUser } from "../auth/current-user.decorator";
 import { Users } from "./users.entity";
 
-@ApiTags("users")
+@ApiTags('users')
 @ApiBearerAuth()
-@Controller("users")
+@Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {
-  }
+  constructor(private readonly usersService: UsersService) {}
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
