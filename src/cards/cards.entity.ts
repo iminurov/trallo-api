@@ -30,10 +30,6 @@ export class Cards {
   @Column({ type: 'varchar', length: 100, nullable: false })
   name: string;
 
-  /**
-   * Relations
-   */
-
   @OneToMany(() => Comments, (comments) => comments.card)
   @Type(() => Comments)
   @JoinColumn()

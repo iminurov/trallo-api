@@ -5,12 +5,12 @@ import {
   JoinColumn,
   OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
-} from "typeorm";
-import { classToPlain, Exclude, Type } from "class-transformer";
-import { Columns } from "../columns/columns.entity";
-import { Cards } from "../cards/cards.entity";
-import { Comments } from "../comments/comments.entity";
+  UpdateDateColumn,
+} from 'typeorm';
+import { classToPlain, Exclude, Type } from 'class-transformer';
+import { Columns } from '../columns/columns.entity';
+import { Cards } from '../cards/cards.entity';
+import { Comments } from '../comments/comments.entity';
 
 @Entity()
 export class Users {

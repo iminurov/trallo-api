@@ -33,10 +33,6 @@ export class Columns {
   @Column({ type: 'varchar', length: 100, nullable: false })
   name: string;
 
-  /**
-   * Relations
-   */
-
   @ManyToOne(() => Users, (users) => users.columns, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
